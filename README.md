@@ -1,36 +1,179 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# YJ CODE Portfolio
+
+A hybrid portfolio platform for **YJ CODE**, combining **brand presentation**, **project showcase**, and **technical archive** in a single web experience.
+
+## Overview
+
+This project is designed as more than a simple personal website.
+
+It serves as:
+
+- a **brand site** for YJ CODE
+- a **portfolio platform** for selected projects
+- a **technical archive** for engineering notes, case studies, and development insights
+
+The goal is to present YJ CODE as a developer brand with both **technical depth** and **refined design sense**, with a strong focus on **hiring appeal** and **client trust**.
+
+## Core Goals
+
+- Build a polished portfolio platform for YJ CODE
+- Showcase selected works with strong technical context
+- Create a maintainable content-driven architecture
+- Establish a clean CI/CD workflow with GitHub Actions and Vercel
+- Turn the website itself into a portfolio-worthy project
+
+## Audience
+
+Primary audience:
+
+- Hiring managers
+
+Secondary audience:
+
+- Potential freelance clients
+- Collaborators
+- Developers interested in the process and architecture
+
+## Tech Stack
+
+- **Next.js** (App Router)
+- **TypeScript**
+- **Tailwind CSS**
+- **shadcn/ui**
+- **Framer Motion**
+- **MDX**
+- **GitHub Actions**
+- **Vercel**
+
+## Project Structure
+
+```txt
+src/
+  app/
+    (marketing)/
+      page.tsx
+      about/page.tsx
+      works/page.tsx
+      services/page.tsx
+      blog/page.tsx
+      lab/page.tsx
+      contact/page.tsx
+      layout.tsx
+    api/
+      contact/route.ts
+    layout.tsx
+    globals.css
+  components/
+    layout/
+    sections/
+    ui/
+  domain/
+    project/
+    post/
+  lib/
+    content/
+    seo/
+    utils/
+  types/
+
+content/
+  projects/
+  posts/
+```
+
+## Planned Pages
+
+- `/` — Home
+- `/about` — Brand and personal introduction
+- `/works` — Selected project showcase
+- `/services` — Development capabilities and collaboration scope
+- `/blog` — Technical writing and engineering notes
+- `/lab` — Experiments, small builds, and explorations
+- `/contact` — Contact and inquiry page
+
+## Development Principles
+
+This project is being built with the following principles:
+
+- **clarity over clutter**
+- **structure over decoration**
+- **maintainability over shortcuts**
+- **brand consistency across pages**
+- **portfolio storytelling, not just visual presentation**
+
+## CI/CD
+
+### CI
+
+GitHub Actions is used for:
+
+- lint checks
+- type checks
+- production build verification
+
+### CD
+
+Vercel is used for:
+
+- preview deployments for branches and pull requests
+- production deployment from the `main` branch
 
 ## Getting Started
 
-First, run the development server:
+Install dependencies:
+
+```bash
+npm install
+```
+
+Run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Run lint:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm run lint
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Run type check:
 
-## Learn More
+```bash
+npm run typecheck
+```
 
-To learn more about Next.js, take a look at the following resources:
+Create a production build:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+npm run build
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Current Status
 
-## Deploy on Vercel
+This project is currently in the **foundation phase**.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Initial focus areas:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- project structure
+- design direction
+- route architecture
+- content model
+- CI/CD setup
+- portfolio system foundation
+
+## Why This Project Matters
+
+This project is intended to be both:
+
+1. a public-facing portfolio platform for YJ CODE
+2. a documented example of how a modern portfolio product can be planned, structured, built, and deployed
+
+It is being developed as a long-term brand asset rather than a one-time showcase page.
+
+## Author
+
+**YJ CODE**
+
+Developer brand focused on building polished digital products with strong engineering structure and thoughtful visual execution.
