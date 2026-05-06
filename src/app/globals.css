@@ -1,17 +1,29 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: "Agrandir Grand Light";
+  src:
+    url("/fonts/agrandir-grand-light.otf") format("opentype"),
+    local("Agrandir Grand Light"), local("Agrandir Grand Light Regular"),
+    local("Agrandir-GrandLight");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
-  --background: #09090b;
-  --foreground: #f4f4f5;
+  --background: #020202;
+  --foreground: #f5f2ea;
 }
 
 body {
-  background:
-    radial-gradient(circle at top, rgba(184, 219, 128, 0.08), transparent 30%),
-    linear-gradient(180deg, #09090b 0%, #050507 100%);
+  background: #020202;
   color: var(--foreground);
   min-height: 100vh;
   font-family:
+    Pretendard,
+    "Noto Sans KR",
+    "Apple SD Gothic Neo",
     Inter,
     ui-sans-serif,
     system-ui,
@@ -24,6 +36,45 @@ body {
 a {
   text-decoration: none;
   color: inherit;
+}
+
+.brand-wordmark {
+  font-family:
+    "Agrandir Grand Light", "Agrandir", Inter, ui-sans-serif, system-ui,
+    sans-serif;
+  font-weight: 300;
+  letter-spacing: 0;
+}
+
+.hero-wordmark {
+  font-family:
+    "Agrandir Grand Light", "Agrandir", Inter, ui-sans-serif, system-ui,
+    sans-serif;
+  font-weight: 300;
+  letter-spacing: 0;
+}
+
+.studio-noise {
+  background-image:
+    linear-gradient(rgba(245, 242, 234, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(245, 242, 234, 0.025) 1px, transparent 1px);
+  background-size: 96px 96px;
+}
+
+@keyframes slow-pan {
+  0% {
+    transform: translate3d(-1.5%, 0, 0) scale(1.04);
+  }
+  50% {
+    transform: translate3d(1.5%, -1%, 0) scale(1.07);
+  }
+  100% {
+    transform: translate3d(-1.5%, 0, 0) scale(1.04);
+  }
+}
+
+.motion-slow-pan {
+  animation: slow-pan 18s ease-in-out infinite;
 }
 
 * {
