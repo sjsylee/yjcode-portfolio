@@ -1,5 +1,22 @@
 # YJ CODE Portfolio
 
+<div align="center">
+
+```txt
+YJ CODE.
+```
+
+**Brand portfolio platform · Service channel · Technical archive**
+
+**브랜드 포트폴리오 플랫폼 · 서비스 채널 · 기술 아카이브**
+
+[![Build](https://img.shields.io/github/actions/workflow/status/sjsylee/yjcode-portfolio/ci.yml?style=flat-square&label=build)](.)
+[![Deploy](https://img.shields.io/badge/deploy-vercel-black?style=flat-square&logo=vercel)](.)
+[![Next.js](https://img.shields.io/badge/Next.js-App_Router-black?style=flat-square&logo=next.js)](.)
+[![TypeScript](https://img.shields.io/badge/TypeScript-strict-blue?style=flat-square&logo=typescript)](.)
+
+</div>
+
 An interactive portfolio and service platform for **YJ CODE**, a software studio building SaaS products, business web platforms, and UI/UX-driven digital products with Next.js, TypeScript, Tailwind CSS, and Framer Motion.
 
 **YJ CODE**의 포트폴리오, 서비스 탐색, 기술 기록을 하나의 제품 표면으로 연결한 인터랙티브 웹 플랫폼입니다. YJ CODE는 단순 프론트엔드 구현을 넘어 SaaS, 비즈니스 웹 플랫폼, UI/UX 중심 소프트웨어를 개발하는 스튜디오입니다.
@@ -46,17 +63,18 @@ YJ CODE Portfolio는 세 가지 사용자 흐름을 중심으로 구성됩니다
 | Portfolio review  | `/works`                         | Present selected work as case-study material instead of a visual gallery only.                                                         |
 | Technical trust   | `/blog`, `/lab`, repository docs | Separate SEO-oriented writing from technical experiments so search users and engineering reviewers can enter through the right surface. |
 
-| 흐름            | 라우트                           | 목적                                                                                                             |
-| --------------- | -------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
-| 서비스 탐색     | `/`, `/services`, `/contact`     | 홈을 SaaS, 비즈니스 웹 플랫폼, 랜딩페이지 제작 문의로 이어지는 전환 중심 스튜디오 랜딩페이지로 구성합니다.       |
-| 포트폴리오 검토 | `/works`                         | 작업 결과를 단순 갤러리가 아니라 케이스 스터디로 보여줍니다.                                                     |
-| 기술 신뢰       | `/blog`, `/lab`, repository docs | SEO 지향 글과 기술 실험을 분리해 검색 사용자와 엔지니어링 리뷰어가 서로 다른 표면으로 진입할 수 있게 합니다.     |
+| 흐름            | 라우트                           | 목적                                                                                                         |
+| --------------- | -------------------------------- | ------------------------------------------------------------------------------------------------------------ |
+| 서비스 탐색     | `/`, `/services`, `/contact`     | 홈을 SaaS, 비즈니스 웹 플랫폼, 랜딩페이지 제작 문의로 이어지는 전환 중심 스튜디오 랜딩페이지로 구성합니다.   |
+| 포트폴리오 검토 | `/works`                         | 작업 결과를 단순 갤러리가 아니라 케이스 스터디로 보여줍니다.                                                 |
+| 기술 신뢰       | `/blog`, `/lab`, repository docs | SEO 지향 글과 기술 실험을 분리해 검색 사용자와 엔지니어링 리뷰어가 서로 다른 표면으로 진입할 수 있게 합니다. |
 
 ## Current Features / 현재 기능
 
 - Marketing route group with home, about, works, services, blog, lab, and contact pages
 - Korean-first public UI copy and navigation for domestic hiring and client audiences
-- Conversion-focused home landing page with large Korean typography, service sections, business proof, compact Blog/Lab trust paths, and reduced-motion support
+- Brand-first home landing page with cinematic studio imagery, Agrandir wordmark typography, large rotating Korean refusal copy, and reduced-motion support
+- Shared studio subpage system for About, Services, Works, Blog, Lab, and Contact
 - AI-aware production messaging that frames AI as a way to keep requirements, business logic, UI flow, and quality standards more verifiable
 - Shared site content model in `src/domain/site/content.ts`
 - Page-level metadata for major public routes
@@ -67,7 +85,8 @@ YJ CODE Portfolio는 세 가지 사용자 흐름을 중심으로 구성됩니다
 
 - 홈, 소개, 작업, 서비스, 블로그, 실험실, 문의 페이지를 포함한 마케팅 라우트 그룹
 - 국내 채용 및 고객 맥락을 우선한 한국어 중심 공개 UI와 내비게이션
-- 큰 한국어 타이포, 서비스 섹션, 비즈니스 증거, 압축된 Blog/Lab 신뢰 경로, reduced-motion을 포함한 전환 중심 홈 랜딩페이지
+- 시네마틱 스튜디오 이미지, Agrandir 워드마크, 큰 회전형 한국어 거부 문구, reduced-motion을 포함한 브랜드 우선 홈 랜딩페이지
+- About, Services, Works, Blog, Lab, Contact에 적용되는 공유 studio subpage system
 - 요구사항, 비즈니스 로직, UI 흐름, 품질 기준을 더 검증 가능하게 관리하는 AI-aware 제작 방식 메시지
 - `src/domain/site/content.ts`의 공유 사이트 콘텐츠 모델
 - 주요 공개 라우트의 페이지별 metadata
@@ -108,9 +127,9 @@ Content currently lives in typed domain constants. This keeps page structure, me
 
 ## Design Direction / 디자인 방향
 
-The visual system is intentionally black, editorial, Korean-first, and more avant-garde than a conventional developer portfolio. The home route now opens as a brand-first hero poster: the `YJ CODE.` wordmark is the primary first-viewport signal, a cinematic product-studio visual plane supports the mood, and the rotating refusal phrase is large enough to carry the service attitude. Subpages share a studio page system with oversized Korean titles, cool silver-blue accents, faint brand atmosphere, and line-based editorial rows instead of generic card grids. Motion creates brand memory, tension, and attention, while the page structure remains scannable for Korean clients, recruiters, and engineers. The README stays bilingual so international reviewers can still evaluate the architecture and intent.
+The visual system is intentionally black, editorial, Korean-first, and more avant-garde than a conventional developer portfolio. The home route now opens as a brand-first hero poster: the `YJ CODE.` wordmark is the primary first-viewport signal, a cinematic product-studio visual plane supports the mood, and the rotating refusal phrase is large enough to carry the service attitude. Subpages share a studio page system with oversized Korean titles, cool silver-blue accents, faint brand atmosphere, and line-based editorial rows instead of generic card grids. Motion creates brand memory, tension, and attention, while the page structure remains scannable for Korean clients, recruiters, and engineers.
 
-시각 시스템은 블랙 계열, editorial, 한국어 우선이며 일반적인 개발자 포트폴리오보다 더 전위적인 인터페이스를 지향합니다. 홈은 이제 브랜드 우선 히어로 포스터로 시작합니다. 첫 화면에서 `YJ CODE.` 워드마크가 가장 강한 신호가 되고, 시네마틱 제품-스튜디오 비주얼이 분위기를 받치며, 회전하는 거부 문구가 서비스 태도를 충분히 크게 전달합니다. 서브페이지는 큰 한국어 제목, 쿨 실버-블루 액센트, 희미한 브랜드 분위기, 카드가 아닌 선 기반 editorial row를 공유하는 studio page system을 사용합니다. 모션은 브랜드 인상, 긴장감, 시선 흐름을 만들기 위해 사용하고, 동시에 국내 클라이언트, 채용담당자, 엔지니어가 빠르게 훑을 수 있는 정보 구조를 유지합니다. README는 국제 리뷰어도 아키텍처와 의도를 평가할 수 있도록 한국어와 영어를 함께 제공합니다.
+시각 시스템은 블랙 계열, editorial, 한국어 우선이며 일반적인 개발자 포트폴리오보다 더 전위적인 인터페이스를 지향합니다. 홈은 이제 브랜드 우선 히어로 포스터로 시작합니다. 첫 화면에서 `YJ CODE.` 워드마크가 가장 강한 신호가 되고, 시네마틱 제품-스튜디오 비주얼이 분위기를 받치며, 회전하는 거부 문구가 서비스 태도를 충분히 크게 전달합니다. 서브페이지는 큰 한국어 제목, 쿨 실버-블루 액센트, 희미한 브랜드 분위기, 카드가 아닌 선 기반 editorial row를 공유하는 studio page system을 사용합니다. 모션은 브랜드 인상, 긴장감, 시선 흐름을 만들기 위해 사용하고, 동시에 국내 클라이언트, 채용담당자, 엔지니어가 빠르게 훑을 수 있는 정보 구조를 유지합니다.
 
 Design constraints:
 
