@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import { siteConfig } from "@/domain/site/seo";
 import "./globals.css";
 
+const googleSiteVerification = process.env.GOOGLE_SITE_VERIFICATION;
+const naverSiteVerification = process.env.NAVER_SITE_VERIFICATION;
+
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
@@ -44,6 +47,18 @@ export const metadata: Metadata = {
       { url: "/icon.png", type: "image/png", sizes: "512x512" },
     ],
     apple: [{ url: "/apple-icon.png", sizes: "180x180", type: "image/png" }],
+  },
+  verification: {
+    ...(googleSiteVerification
+      ? { google: googleSiteVerification }
+      : undefined),
+    ...(naverSiteVerification
+      ? {
+          other: {
+            "naver-site-verification": naverSiteVerification,
+          },
+        }
+      : undefined),
   },
 };
 
