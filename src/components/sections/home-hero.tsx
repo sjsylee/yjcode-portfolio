@@ -1,7 +1,7 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
+import Image from "next/image";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { ArrowDown, ArrowUpRight } from "lucide-react";
 import { useEffect, useState } from "react";
@@ -27,7 +27,7 @@ const fadeUp = {
 };
 
 export function HomeHero() {
-  const shouldReduceMotion = useReducedMotion();
+  const shouldReduceMotion = useReducedMotion() ?? false;
   const [phraseIndex, setPhraseIndex] = useState(0);
 
   useEffect(() => {
@@ -35,7 +35,7 @@ export function HomeHero() {
 
     const interval = window.setInterval(() => {
       setPhraseIndex((index) => (index + 1) % rotatingPhrases.length);
-    }, 4200);
+    }, 6200);
 
     return () => window.clearInterval(interval);
   }, [shouldReduceMotion]);
@@ -94,7 +94,7 @@ export function HomeHero() {
                           : { y: "-105%", opacity: 0 }
                       }
                       transition={{
-                        duration: shouldReduceMotion ? 0 : 0.86,
+                        duration: shouldReduceMotion ? 0 : 1.18,
                         ease: [0.16, 1, 0.3, 1],
                       }}
                       className="absolute inset-x-0 top-0 block whitespace-nowrap"
@@ -117,8 +117,7 @@ export function HomeHero() {
               className="grid gap-7 md:justify-items-end md:text-right"
             >
               <p className="hidden max-w-sm text-sm leading-7 text-[#f5f2ea]/58 md:block">
-                작은 출발을 핑계로 제품성, 사용성, 운영 흐름의 기준을
-                낮추지 않습니다.
+                작은 출발에도 제품성, 사용성, 운영 기준을 낮추지 않습니다.
               </p>
 
               <div className="flex flex-wrap gap-4 md:justify-end">
@@ -190,143 +189,73 @@ export function HomeHero() {
 function HeroVisualPlane({
   shouldReduceMotion,
 }: {
-  shouldReduceMotion: boolean | null;
+  shouldReduceMotion: boolean;
 }) {
   return (
     <div aria-hidden className="absolute inset-0 -z-10 overflow-hidden">
-      <motion.div
-        initial={shouldReduceMotion ? false : { opacity: 0, scale: 1.02 }}
-        animate={
+      <Image
+        src="/assets/hero-motion-v5-2x/base-plate-sunken.png"
+        alt=""
+        fill
+        priority
+        sizes="100vw"
+        className={[
+          "hero-visual-fit object-cover opacity-[0.88]",
+          "saturate-[0.86] contrast-[0.96] brightness-[0.82]",
+        ].join(" ")}
+      />
+      <HeroImageLayer
+        src="/assets/hero-motion-v5-2x/rear-browser.png"
+        className={shouldReduceMotion ? "opacity-[0.78]" : "hero-layer-rear opacity-[0.78]"}
+      />
+      <HeroImageLayer
+        src="/assets/hero-motion-v5-2x/left-glass.png"
+        className={shouldReduceMotion ? "opacity-[0.36]" : "hero-layer-left opacity-[0.36]"}
+      />
+      <HeroImageLayer
+        src="/assets/hero-motion-v5-2x/phone.png"
+        className={shouldReduceMotion ? "opacity-[0.94]" : "hero-layer-phone opacity-[0.94]"}
+      />
+      <HeroImageLayer
+        src="/assets/hero-motion-v5-2x/foreground-console.png"
+        className={shouldReduceMotion ? "opacity-[0.84]" : "hero-layer-console opacity-[0.84]"}
+      />
+      <HeroImageLayer
+        src="/assets/hero-motion-v5-2x/signal-lines.png"
+        className={
           shouldReduceMotion
-            ? { opacity: 0.66 }
-            : {
-                opacity: 0.76,
-                x: ["0%", "-1.4%", "0%"],
-                y: ["0%", "-0.8%", "0%"],
-                scale: [1.02, 1.06, 1.02],
-              }
+            ? "opacity-[0.3] mix-blend-screen"
+            : "hero-layer-signals opacity-[0.3] mix-blend-screen"
         }
-        transition={{
-          opacity: { duration: shouldReduceMotion ? 0 : 1.2 },
-          x: {
-            duration: shouldReduceMotion ? 0 : 20,
-            repeat: shouldReduceMotion ? 0 : Infinity,
-            ease: "easeInOut",
-          },
-          y: {
-            duration: shouldReduceMotion ? 0 : 22,
-            repeat: shouldReduceMotion ? 0 : Infinity,
-            ease: "easeInOut",
-          },
-          scale: {
-            duration: shouldReduceMotion ? 0 : 20,
-            repeat: shouldReduceMotion ? 0 : Infinity,
-            ease: "easeInOut",
-          },
-        }}
-        className="absolute inset-y-0 right-[-22vw] w-[126vw] md:right-[-12vw] md:w-[96vw] lg:right-[-6vw] lg:w-[82vw]"
-      >
-        <Image
-          src="/assets/yjcode-cinematic-studio-hero.png"
-          alt=""
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover object-[62%_50%]"
-        />
-      </motion.div>
-
-      <motion.div
-        initial={shouldReduceMotion ? false : { opacity: 0 }}
-        animate={
-          shouldReduceMotion
-            ? { opacity: 0.16 }
-            : {
-                opacity: 0.16,
-                x: [0, 18, 0],
-                y: [0, -14, 0],
-                rotate: [-3, -2, -3],
-              }
-        }
-        transition={{
-          opacity: { duration: shouldReduceMotion ? 0 : 1.1, delay: 0.4 },
-          x: {
-            duration: shouldReduceMotion ? 0 : 16,
-            repeat: shouldReduceMotion ? 0 : Infinity,
-            ease: "easeInOut",
-          },
-          y: {
-            duration: shouldReduceMotion ? 0 : 14,
-            repeat: shouldReduceMotion ? 0 : Infinity,
-            ease: "easeInOut",
-          },
-          rotate: {
-            duration: shouldReduceMotion ? 0 : 16,
-            repeat: shouldReduceMotion ? 0 : Infinity,
-            ease: "easeInOut",
-          },
-        }}
-        className="absolute right-[-10rem] top-[18%] hidden w-[48rem] mix-blend-screen blur-[0.2px] md:block"
-      >
-        <Image
-          src="/assets/yjcode-hero-dashboard-cutout.png"
-          width={1635}
-          height={962}
-          alt=""
-          priority
-          sizes="48rem"
-          className="h-auto w-full object-contain"
-        />
-      </motion.div>
-
-      <motion.div
-        initial={shouldReduceMotion ? false : { opacity: 0 }}
-        animate={
-          shouldReduceMotion
-            ? { opacity: 0.12 }
-            : {
-                opacity: 0.12,
-                x: [0, -12, 0],
-                y: [0, 18, 0],
-                rotate: [5, 6.5, 5],
-              }
-        }
-        transition={{
-          opacity: { duration: shouldReduceMotion ? 0 : 1.1, delay: 0.55 },
-          x: {
-            duration: shouldReduceMotion ? 0 : 18,
-            repeat: shouldReduceMotion ? 0 : Infinity,
-            ease: "easeInOut",
-          },
-          y: {
-            duration: shouldReduceMotion ? 0 : 15,
-            repeat: shouldReduceMotion ? 0 : Infinity,
-            ease: "easeInOut",
-          },
-          rotate: {
-            duration: shouldReduceMotion ? 0 : 18,
-            repeat: shouldReduceMotion ? 0 : Infinity,
-            ease: "easeInOut",
-          },
-        }}
-        className="absolute right-[3vw] bottom-[10%] hidden w-[34rem] mix-blend-screen md:block"
-      >
-        <Image
-          src="/assets/yjcode-hero-build-cutout.png"
-          width={1536}
-          height={1024}
-          alt=""
-          priority
-          sizes="34rem"
-          className="h-auto w-full object-contain"
-        />
-      </motion.div>
-
-      <div className="absolute inset-0 bg-[linear-gradient(90deg,#020202_0%,rgba(2,2,2,0.92)_26%,rgba(2,2,2,0.58)_60%,rgba(2,2,2,0.78)_100%)]" />
-      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(2,2,2,0.12)_0%,rgba(2,2,2,0.05)_48%,#020202_100%)]" />
-      <div className="studio-noise absolute inset-0 opacity-70" />
-      <div className="absolute left-[56vw] top-0 h-full w-px rotate-[9deg] bg-[#d8e6ff]/16" />
-      <div className="absolute bottom-[18%] left-0 h-px w-full bg-[#f5f2ea]/10" />
+      />
+      <div className="absolute inset-0 bg-[linear-gradient(90deg,#020202_0%,rgba(2,2,2,0.88)_26%,rgba(2,2,2,0.22)_56%,rgba(2,2,2,0.42)_100%)]" />
+      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(2,2,2,0.62)_0%,rgba(2,2,2,0.08)_42%,rgba(2,2,2,0.82)_100%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_76%_34%,rgba(216,230,255,0.16),transparent_30%)]" />
+      <div className="absolute inset-0 studio-noise opacity-40" />
+      {!shouldReduceMotion ? (
+        <>
+          <div className="hero-light-sweep absolute inset-0 opacity-60 mix-blend-screen" />
+          <div className="hero-depth-rift absolute inset-0 opacity-45 mix-blend-screen" />
+        </>
+      ) : null}
     </div>
+  );
+}
+
+function HeroImageLayer({
+  src,
+  className,
+}: {
+  src: string;
+  className: string;
+}) {
+  return (
+    <Image
+      src={src}
+      alt=""
+      fill
+      sizes="100vw"
+      className={["hero-visual-fit object-cover", className].join(" ")}
+    />
   );
 }

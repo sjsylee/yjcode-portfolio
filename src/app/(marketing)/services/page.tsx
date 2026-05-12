@@ -2,35 +2,51 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowUpRight, Check } from "lucide-react";
 import { EditorialRows, MarketingPageShell } from "@/components/sections/marketing-page-shell";
-import { services } from "@/domain/site/content";
+import { getServices } from "@/domain/site/content-repository";
+import { createPageMetadata } from "@/domain/site/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createPageMetadata({
   title: "서비스",
   description:
     "YJ CODE의 SaaS 개발, 비즈니스 웹 플랫폼, UI/UX 중심 소프트웨어, SEO 기반 웹사이트 제작 서비스.",
-};
+  path: "/services",
+  keywords: [
+    "SaaS 개발",
+    "비즈니스 웹 플랫폼 개발",
+    "랜딩페이지 제작",
+    "Next.js 웹사이트 제작",
+    "UI UX 중심 소프트웨어 개발",
+  ],
+});
 
-export default function ServicesPage() {
+export default async function ServicesPage() {
+  const services = await getServices();
+
   return (
     <MarketingPageShell
       eyebrow="Services / Business systems"
-      title="검색되고, 작동하고, 기억되는 개발 서비스."
+      title={
+        <>
+          <span className="block">검색되고, 작동하고,</span>
+          <span className="block">기억되는 개발 서비스.</span>
+        </>
+      }
       description="SaaS 개발, 비즈니스 웹 플랫폼, UI/UX 중심 소프트웨어, 웹사이트 제작 수요를 명확한 작업 범위와 제품 품질로 연결합니다."
     >
       <EditorialRows>
         {services.map((service, index) => (
           <article
             key={service.slug}
-            className="grid gap-8 border-t border-[#f5f2ea]/12 py-10 first:border-t-0 lg:grid-cols-[5rem_0.52fr_1fr] lg:py-14"
+            className="grid gap-8 border-t border-[#f5f2ea]/12 py-10 first:border-t-0 lg:grid-cols-[5rem_minmax(0,0.52fr)_minmax(0,1fr)] lg:py-14"
           >
             <span className="text-xs font-semibold text-[#f5f2ea]/28">
               {String(index + 1).padStart(2, "0")}
             </span>
-            <div>
+            <div className="min-w-0">
               <p className="text-xs font-semibold tracking-[0.16em] text-[#d8e6ff]/70 uppercase">
                 {service.eyebrow}
               </p>
-              <h2 className="mt-5 max-w-md text-4xl leading-tight font-semibold md:text-5xl">
+              <h2 className="kr-heading mt-5 max-w-md text-4xl leading-tight font-semibold md:text-5xl">
                 {service.title}
               </h2>
               <Link
@@ -41,7 +57,7 @@ export default function ServicesPage() {
                 <ArrowUpRight size={16} aria-hidden />
               </Link>
             </div>
-            <div>
+            <div className="min-w-0">
               <p className="max-w-2xl text-base leading-8 text-[#f5f2ea]/64">
                 {service.summary}
               </p>

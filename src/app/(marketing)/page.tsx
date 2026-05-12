@@ -1,16 +1,31 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowUpRight, Check } from "lucide-react";
 import { HomeHero } from "@/components/sections/home-hero";
 import { ScrollReveal } from "@/components/sections/scroll-reveal";
-import {
-  aiProductionSignals,
-  businessProofs,
-  featuredWorks,
-  homeTrustChannels,
-  services,
-} from "@/domain/site/content";
+import { getSiteContent } from "@/domain/site/content-repository";
+import { createPageMetadata } from "@/domain/site/seo";
 
-export default function HomePage() {
+export const metadata: Metadata = createPageMetadata({
+  title: {
+    absolute: "YJ CODE.",
+  },
+  description:
+    "YJ CODE는 SaaS 제품, 비즈니스 웹 플랫폼, 랜딩페이지를 제품 기준의 UI/UX와 비즈니스 로직으로 설계하고 구현합니다.",
+  path: "/",
+  keywords: [
+    "YJ CODE",
+    "SaaS 개발",
+    "비즈니스 웹 플랫폼 개발",
+    "랜딩페이지 제작",
+    "Next.js 웹사이트 제작",
+  ],
+});
+
+export default async function HomePage() {
+  const { services, works, siteCopy } = await getSiteContent();
+  const featuredWorks = works.filter((work) => work.visibility === "public");
+
   return (
     <div className="relative overflow-hidden bg-[#020202] text-[#f5f2ea]">
       <HomeHero />
@@ -21,12 +36,13 @@ export default function HomePage() {
             <p className="text-xs font-semibold text-[#d8e6ff]/72 uppercase">
               Service structure
             </p>
-            <h2 className="mt-5 max-w-xl text-4xl leading-tight font-semibold md:text-6xl">
-              만들 수 있음보다, 굴러갈 구조가 먼저입니다.
+            <h2 className="kr-heading mt-5 max-w-xl text-4xl leading-tight font-semibold md:text-6xl">
+              <span className="block">기능보다 먼저,</span>
+              <span className="block">흐름을 설계합니다.</span>
             </h2>
             <p className="mt-6 max-w-md text-sm leading-7 text-[#f5f2ea]/54">
-              문의, 예약, 결제, 운영, 콘텐츠, 내부 도구까지 실제 비즈니스가
-              움직이는 순서로 웹 시스템을 설계합니다.
+              문의, 예약, 결제, 운영, 콘텐츠, 내부 도구가 한 방향으로
+              움직이도록 제품 구조를 먼저 잡습니다.
             </p>
           </ScrollReveal>
 
@@ -35,12 +51,12 @@ export default function HomePage() {
               <ScrollReveal key={service.slug} delay={index * 0.06}>
                 <Link
                   href="/services"
-                  className="group grid gap-5 border-t border-[#f5f2ea]/12 py-8 transition hover:border-[#d8e6ff]/58 md:grid-cols-[7rem_15rem_1fr]"
+                  className="group grid gap-5 border-t border-[#f5f2ea]/12 py-8 transition hover:border-[#d8e6ff]/58 md:grid-cols-[5rem_minmax(0,13rem)_minmax(0,1fr)]"
                 >
                   <span className="text-[0.72rem] font-semibold text-[#f5f2ea]/26 transition group-hover:text-[#d8e6ff]/72">
                     0{index + 1}
                   </span>
-                  <div>
+                  <div className="min-w-0">
                     <p className="text-xs font-semibold text-[#f5f2ea]/35 uppercase transition group-hover:text-[#d8e6ff]/72">
                       {service.eyebrow}
                     </p>
@@ -48,7 +64,7 @@ export default function HomePage() {
                       {service.title}
                     </h3>
                   </div>
-                  <div>
+                  <div className="min-w-0">
                     <p className="max-w-2xl text-sm leading-7 text-[#f5f2ea]/58">
                       {service.summary}
                     </p>
@@ -73,18 +89,15 @@ export default function HomePage() {
           aria-hidden
           className="absolute inset-x-0 top-0 h-px bg-[#f5f2ea]/12"
         />
-        <div
-          aria-hidden
-          className="absolute right-[12vw] top-0 h-full w-px rotate-[13deg] bg-[#d8e6ff]/12"
-        />
         <div className="mx-auto w-full max-w-[92rem] px-5 py-24 md:px-7 lg:py-36">
           <ScrollReveal className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
             <div>
               <p className="text-xs font-semibold text-[#d8e6ff]/72 uppercase">
                 Business sense
               </p>
-              <h2 className="mt-5 max-w-4xl text-[clamp(2.4rem,6.4vw,7.6rem)] leading-[0.96] font-semibold">
-                감도는 첫 인상이고, 로직은 수익의 구조입니다.
+              <h2 className="kr-heading mt-5 max-w-4xl text-[clamp(2.4rem,6.4vw,7.6rem)] leading-[1] font-semibold">
+                <span className="block">좋은 화면은</span>
+                <span className="block">행동을 바꿉니다.</span>
               </h2>
             </div>
             <p className="max-w-2xl text-base leading-8 text-[#f5f2ea]/58">
@@ -94,14 +107,14 @@ export default function HomePage() {
             </p>
           </ScrollReveal>
 
-          <div className="mt-20 grid gap-10 md:grid-cols-3">
-            {businessProofs.map((proof, index) => (
+          <div className="mt-16 grid gap-10 md:grid-cols-3">
+            {siteCopy.businessProofs.map((proof, index) => (
               <ScrollReveal key={proof.label} delay={index * 0.08}>
                 <article className="min-h-full border-t border-[#f5f2ea]/12 pt-7">
                   <p className="text-xs font-semibold text-[#d8e6ff]/62 uppercase">
                     {proof.label}
                   </p>
-                  <h3 className="mt-10 text-2xl leading-tight font-semibold">
+                  <h3 className="kr-heading mt-10 text-2xl leading-tight font-semibold">
                     {proof.title}
                   </h3>
                   <p className="mt-4 text-sm leading-7 text-[#f5f2ea]/56">
@@ -118,36 +131,39 @@ export default function HomePage() {
         <div className="mx-auto grid w-full max-w-[92rem] gap-12 px-5 py-24 md:px-7 lg:grid-cols-[0.82fr_1.18fr] lg:py-36">
           <ScrollReveal>
             <p className="text-xs font-semibold text-[#d8e6ff]/72 uppercase">
-              Production system
+              Agentic production
             </p>
-            <h2 className="mt-5 max-w-2xl text-4xl leading-tight font-semibold md:text-6xl">
-              AI를 말하기보다, 더 빠르게 검증되는 제작 방식을 만듭니다.
+            <h2 className="kr-heading mt-5 max-w-2xl text-4xl leading-tight font-semibold md:text-6xl">
+              <span className="block">더 빠르게 검토하고,</span>
+              <span className="block">더 정확하게 결정합니다.</span>
             </h2>
             <p className="mt-6 max-w-xl text-sm leading-7 text-[#f5f2ea]/58">
-              AI 도구는 속도를 높입니다. 하지만 요구사항, 비즈니스 로직,
-              UI 흐름, 품질 기준을 놓치지 않는 제작 컨텍스트가 있어야
-              결과물이 서비스가 됩니다.
+              최신 에이전트형 제작 흐름을 활용해 탐색, 구현, 검토의 반복을
+              빠르게 가져갑니다. 우선순위, 비즈니스 로직, 사용자 흐름, 출시
+              기준은 개발자가 끝까지 책임지고 선명하게 결정합니다.
             </p>
           </ScrollReveal>
 
-          <div className="grid gap-4">
-            {aiProductionSignals.map((signal, index) => (
-              <ScrollReveal key={signal.title} delay={index * 0.07}>
-                <article className="grid gap-4 border-t border-[#f5f2ea]/12 py-7 md:grid-cols-[2.5rem_1fr]">
-                  <span className="flex h-10 w-10 items-center justify-center text-[#d8e6ff]">
-                    <Check size={17} aria-hidden />
-                  </span>
-                  <div>
-                    <h3 className="text-xl font-semibold">
-                      {signal.title}
-                    </h3>
-                    <p className="mt-3 text-sm leading-7 text-[#f5f2ea]/56">
-                      {signal.description}
-                    </p>
-                  </div>
-                </article>
-              </ScrollReveal>
-            ))}
+          <div className="grid gap-8">
+            <div className="grid gap-4">
+              {siteCopy.aiProductionSignals.map((signal, index) => (
+                <ScrollReveal key={signal.title} delay={index * 0.07}>
+                  <article className="grid gap-4 border-t border-[#f5f2ea]/12 py-7 md:grid-cols-[2.5rem_minmax(0,1fr)]">
+                    <span className="flex h-10 w-10 items-center justify-center text-[#d8e6ff]">
+                      <Check size={17} aria-hidden />
+                    </span>
+                    <div className="min-w-0">
+                      <h3 className="kr-heading text-xl font-semibold">
+                        {signal.title}
+                      </h3>
+                      <p className="mt-3 text-sm leading-7 text-[#f5f2ea]/56">
+                        {signal.description}
+                      </p>
+                    </div>
+                  </article>
+                </ScrollReveal>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -158,8 +174,9 @@ export default function HomePage() {
             <p className="text-xs font-semibold text-[#d8e6ff]/72 uppercase">
               Work evidence
             </p>
-            <h2 className="mt-5 text-4xl leading-tight font-semibold md:text-6xl">
-              결과보다, 판단이 검토되는 작업.
+            <h2 className="kr-heading mt-5 text-4xl leading-tight font-semibold md:text-6xl">
+              <span className="block">결과보다,</span>
+              <span className="block">판단이 검토되는 작업.</span>
             </h2>
             <Link
               href="/works"
@@ -177,10 +194,10 @@ export default function HomePage() {
           <div className="grid">
             {featuredWorks.map((work, index) => (
               <ScrollReveal key={work.slug} delay={index * 0.06}>
-                <article className="grid gap-5 border-t border-[#f5f2ea]/12 py-7 md:grid-cols-[10rem_1fr]">
+                <article className="grid gap-5 border-t border-[#f5f2ea]/12 py-7 md:grid-cols-[10rem_minmax(0,1fr)]">
                   <p className="text-sm text-[#f5f2ea]/38">{work.type}</p>
-                  <div>
-                    <h3 className="text-2xl font-semibold">
+                  <div className="min-w-0">
+                    <h3 className="kr-heading text-2xl font-semibold">
                       {work.title}
                     </h3>
                     <p className="mt-3 text-sm leading-7 text-[#f5f2ea]/56">
@@ -207,7 +224,7 @@ export default function HomePage() {
       <section className="relative">
         <div className="mx-auto w-full max-w-[92rem] px-5 py-24 md:px-7 lg:py-32">
           <ScrollReveal className="grid gap-10 md:grid-cols-2">
-            {homeTrustChannels.map((channel) => (
+            {siteCopy.homeTrustChannels.map((channel) => (
               <Link
                 key={channel.href}
                 href={channel.href}
@@ -216,7 +233,7 @@ export default function HomePage() {
                 <p className="text-xs font-semibold text-[#d8e6ff]/72 uppercase">
                   {channel.label}
                 </p>
-                <h2 className="mt-8 text-4xl font-semibold transition group-hover:text-[#d8e6ff] md:text-5xl">
+                <h2 className="kr-heading mt-8 text-4xl font-semibold transition group-hover:text-[#d8e6ff] md:text-5xl">
                   {channel.title}
                 </h2>
                 <p className="mt-5 max-w-lg text-sm leading-7 text-[#f5f2ea]/56">
@@ -240,17 +257,18 @@ export default function HomePage() {
         <ScrollReveal className="mx-auto grid w-full max-w-[92rem] gap-10 border-t border-[#f5f2ea]/16 pt-8 lg:grid-cols-[1fr_auto] lg:items-end">
           <div>
             <p className="text-xs font-semibold uppercase text-[#d8e6ff]/72">
-              Start small. Build real.
+              Bring the context.
             </p>
             <h2 className="hero-wordmark mt-8 text-[clamp(4rem,13vw,14rem)] leading-[0.78] font-light">
               YJ CODE.
             </h2>
-            <h3 className="mt-8 max-w-4xl text-4xl leading-tight font-semibold md:text-6xl">
-              작은 팀도 제품처럼 시작할 수 있습니다.
+            <h3 className="kr-heading mt-8 max-w-4xl text-4xl leading-tight font-semibold md:text-6xl">
+              <span className="block">아직 선명하지 않아도,</span>
+              <span className="block">완성도는 흐려지지 않게.</span>
             </h3>
             <p className="mt-5 max-w-2xl text-sm leading-7 text-[#f5f2ea]/58">
-              필요한 기능부터 만들고, 운영과 수익으로 이어질 구조를 함께
-              정리합니다. 첫 문의에서 이미 제품의 기준을 세웁니다.
+              낯선 기술은 쉬운 결정으로 풀고, 필요한 기능과 화면, 운영 흐름은
+              하나의 제품 기준으로 정리합니다.
             </p>
           </div>
           <Link

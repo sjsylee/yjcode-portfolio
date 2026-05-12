@@ -1,11 +1,20 @@
 @import "tailwindcss";
 
 @font-face {
-  font-family: "Agrandir Grand Light";
+  font-family: "Unbounded YJ";
   src:
-    url("/fonts/agrandir-grand-light.otf") format("opentype"),
-    local("Agrandir Grand Light"), local("Agrandir Grand Light Regular"),
-    local("Agrandir-GrandLight");
+    url("/fonts/unbounded-200.ttf") format("truetype"),
+    local("Unbounded ExtraLight"), local("Unbounded");
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Unbounded YJ";
+  src:
+    url("/fonts/unbounded-300.ttf") format("truetype"),
+    local("Unbounded Light"), local("Unbounded");
   font-weight: 300;
   font-style: normal;
   font-display: swap;
@@ -38,20 +47,29 @@ a {
   color: inherit;
 }
 
+p,
+li {
+  word-break: keep-all;
+  overflow-wrap: normal;
+}
+
 .brand-wordmark {
-  font-family:
-    "Agrandir Grand Light", "Agrandir", Inter, ui-sans-serif, system-ui,
-    sans-serif;
-  font-weight: 300;
+  font-family: "Unbounded YJ", Inter, ui-sans-serif, system-ui, sans-serif;
+  font-weight: 200;
   letter-spacing: 0;
 }
 
 .hero-wordmark {
-  font-family:
-    "Agrandir Grand Light", "Agrandir", Inter, ui-sans-serif, system-ui,
-    sans-serif;
-  font-weight: 300;
+  font-family: "Unbounded YJ", Inter, ui-sans-serif, system-ui, sans-serif;
+  font-weight: 200;
   letter-spacing: 0;
+}
+
+.kr-heading {
+  word-break: keep-all;
+  overflow-wrap: normal;
+  line-break: strict;
+  text-wrap: balance;
 }
 
 .studio-noise {
@@ -61,20 +79,148 @@ a {
   background-size: 96px 96px;
 }
 
+.hero-visual-fit {
+  object-position: 58% 45%;
+}
+
 @keyframes slow-pan {
   0% {
-    transform: translate3d(-1.5%, 0, 0) scale(1.04);
+    transform: translate3d(-0.7%, 0.1%, 0);
   }
   50% {
-    transform: translate3d(1.5%, -1%, 0) scale(1.07);
+    transform: translate3d(0.7%, -0.35%, 0);
   }
   100% {
-    transform: translate3d(-1.5%, 0, 0) scale(1.04);
+    transform: translate3d(-0.7%, 0.1%, 0);
   }
 }
 
 .motion-slow-pan {
-  animation: slow-pan 18s ease-in-out infinite;
+  animation: slow-pan 24s ease-in-out infinite;
+  will-change: transform;
+}
+
+@keyframes hero-layer-rear {
+  from {
+    transform: translate3d(-1px, -7px, 0);
+  }
+  to {
+    transform: translate3d(1px, 8px, 0);
+  }
+}
+
+@keyframes hero-layer-left {
+  from {
+    transform: translate3d(1px, 6px, 0);
+  }
+  to {
+    transform: translate3d(-1px, -7px, 0);
+  }
+}
+
+@keyframes hero-layer-phone {
+  from {
+    transform: translate3d(1px, 12px, 0);
+  }
+  to {
+    transform: translate3d(-1px, -13px, 0);
+  }
+}
+
+@keyframes hero-layer-console {
+  from {
+    transform: translate3d(-1px, 10px, 0);
+  }
+  to {
+    transform: translate3d(1px, -10px, 0);
+  }
+}
+
+@keyframes hero-layer-signals {
+  from {
+    transform: translate3d(6px, -5px, 0);
+  }
+  to {
+    transform: translate3d(-6px, 5px, 0);
+  }
+}
+
+.hero-layer-rear {
+  animation: hero-layer-rear 12.8s cubic-bezier(0.42, 0, 0.2, 1) infinite alternate;
+  backface-visibility: hidden;
+  will-change: transform;
+}
+
+.hero-layer-left {
+  animation: hero-layer-left 14.6s cubic-bezier(0.42, 0, 0.2, 1) infinite alternate;
+  backface-visibility: hidden;
+  will-change: transform;
+}
+
+.hero-layer-phone {
+  animation: hero-layer-phone 10.8s cubic-bezier(0.42, 0, 0.2, 1) infinite alternate;
+  backface-visibility: hidden;
+  will-change: transform;
+}
+
+.hero-layer-console {
+  animation: hero-layer-console 12.2s cubic-bezier(0.42, 0, 0.2, 1) infinite alternate;
+  backface-visibility: hidden;
+  will-change: transform;
+}
+
+.hero-layer-signals {
+  animation: hero-layer-signals 11.4s cubic-bezier(0.42, 0, 0.2, 1) infinite alternate;
+  backface-visibility: hidden;
+  will-change: transform;
+}
+
+@media (max-width: 760px) {
+  .hero-visual-fit {
+    object-position: 66% 38%;
+  }
+}
+
+@keyframes hero-light-sweep {
+  0%,
+  24% {
+    transform: translateX(-18%);
+    opacity: 0;
+  }
+  48% {
+    opacity: 0.62;
+  }
+  74%,
+  100% {
+    transform: translateX(18%);
+    opacity: 0;
+  }
+}
+
+@keyframes hero-depth-rift {
+  0%,
+  100% {
+    transform: translate3d(-0.5%, 0, 0);
+    opacity: 0.28;
+  }
+  50% {
+    transform: translate3d(0.7%, -0.4%, 0);
+    opacity: 0.5;
+  }
+}
+
+.hero-light-sweep {
+  background:
+    linear-gradient(112deg, transparent 39%, rgba(216, 230, 255, 0.16) 45%, transparent 51%),
+    radial-gradient(circle at 78% 38%, rgba(216, 230, 255, 0.12), transparent 22%);
+  animation: hero-light-sweep 8.5s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+}
+
+.hero-depth-rift {
+  background:
+    linear-gradient(105deg, transparent 29%, rgba(147, 180, 255, 0.045) 31%, transparent 36%),
+    linear-gradient(105deg, transparent 54%, rgba(245, 242, 234, 0.052) 56%, transparent 61%);
+  animation: hero-depth-rift 16s cubic-bezier(0.16, 1, 0.3, 1) infinite alternate;
 }
 
 * {
