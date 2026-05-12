@@ -1,26 +1,36 @@
 import type { Metadata } from "next";
 import { ArrowUpRight } from "lucide-react";
 import { EditorialRows, MarketingPageShell } from "@/components/sections/marketing-page-shell";
-import { featuredWorks } from "@/domain/site/content";
+import { getWorks } from "@/domain/site/content-repository";
+import { createPageMetadata } from "@/domain/site/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createPageMetadata({
   title: "작업",
   description:
     "문제, 기술 선택, UX 판단, 결과를 함께 설명하는 YJ CODE의 케이스 스터디형 작업.",
-};
+  path: "/works",
+  keywords: ["YJ CODE 작업", "케이스 스터디", "Next.js 포트폴리오", "제품 UI"],
+});
 
-export default function WorksPage() {
+export default async function WorksPage() {
+  const works = await getWorks();
+
   return (
     <MarketingPageShell
       eyebrow="Works / Case-study signal"
-      title="결과물보다 판단이 먼저 보이는 작업."
+      title={
+        <>
+          <span className="block">결과물보다</span>
+          <span className="block">판단이 먼저 보이는 작업.</span>
+        </>
+      }
       description="작업은 갤러리로 끝나지 않습니다. 문제, 제약, 기술 선택, UX 판단이 함께 검토되는 케이스 스터디 시스템으로 확장합니다."
     >
       <EditorialRows>
-        {featuredWorks.map((work, index) => (
+        {works.map((work, index) => (
           <article
             key={work.slug}
-            className="group grid gap-8 border-t border-[#f5f2ea]/12 py-10 first:border-t-0 md:grid-cols-[5rem_0.5fr_1fr_auto] md:items-start lg:py-14"
+            className="group grid gap-8 border-t border-[#f5f2ea]/12 py-10 first:border-t-0 md:grid-cols-[5rem_minmax(0,0.5fr)_minmax(0,1fr)_auto] md:items-start lg:py-14"
           >
             <span className="text-xs font-semibold text-[#f5f2ea]/28">
               {String(index + 1).padStart(2, "0")}
@@ -28,8 +38,8 @@ export default function WorksPage() {
             <p className="text-sm font-medium text-[#d8e6ff]/72">
               {work.type}
             </p>
-            <div>
-              <h2 className="text-4xl leading-tight font-semibold transition group-hover:text-[#d8e6ff] md:text-5xl">
+            <div className="min-w-0">
+              <h2 className="kr-heading text-4xl leading-tight font-semibold transition group-hover:text-[#d8e6ff] md:text-5xl">
                 {work.title}
               </h2>
               <p className="mt-5 max-w-2xl text-sm leading-7 text-[#f5f2ea]/58">

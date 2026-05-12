@@ -12,6 +12,7 @@
 
 # testing
 /coverage
+/.tmp/
 
 # next.js
 /.next/
@@ -32,6 +33,12 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
+
+# generated private CMS content
+/content/generated/
+
+# local-only project docs
+/docs/
 
 # vercel
 .vercel
