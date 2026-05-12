@@ -17,9 +17,7 @@ const generatedContentPath = join(
   "site-content.json",
 );
 
-const isStrictContentMode =
-  process.env.YJ_CONTENT_STRICT === "true" ||
-  process.env.VERCEL_ENV === "production";
+const isStrictContentMode = process.env.YJ_CONTENT_STRICT === "true";
 
 export const getSiteContent = cache(async (): Promise<SiteContent> => {
   try {
