@@ -146,6 +146,7 @@ NOTION_SITE_COPY_DATABASE_ID=
 - Route-level title, description, canonical URL, Open Graph, and Twitter metadata
 - `robots.txt` and `sitemap.xml`
 - Blog article routes with `BlogPosting` JSON-LD
+- Search ownership tokens are injected through deploy environment variables, not committed to source
 - Korean-first headings and copy
 
 - canonical production origin은 `https://yjcode.org`로 고정합니다.
@@ -153,7 +154,19 @@ NOTION_SITE_COPY_DATABASE_ID=
 - 라우트별 title, description, canonical URL, Open Graph, Twitter metadata를 둡니다.
 - `robots.txt`와 `sitemap.xml`을 제공합니다.
 - 블로그 글 route에는 `BlogPosting` JSON-LD를 포함합니다.
+- 검색엔진 소유권 인증 토큰은 source에 커밋하지 않고 배포 환경변수로 주입합니다.
 - heading과 본문은 한국어 우선으로 구성합니다.
+
+Search console deployment variables:
+
+```bash
+GOOGLE_SITE_VERIFICATION=
+NAVER_SITE_VERIFICATION=
+```
+
+Google should be registered as the domain property for `yjcode.org` when possible. Naver Search Advisor can use the rendered `naver-site-verification` meta tag, then submit `https://yjcode.org/sitemap.xml`.
+
+Google은 가능하면 `yjcode.org` domain property로 등록합니다. 네이버 서치어드바이저는 렌더링된 `naver-site-verification` meta tag로 소유권을 확인한 뒤 `https://yjcode.org/sitemap.xml`을 제출합니다.
 
 ## Design Direction / 디자인 방향
 

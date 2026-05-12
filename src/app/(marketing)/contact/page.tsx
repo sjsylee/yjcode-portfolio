@@ -58,10 +58,10 @@ export default async function ContactPage() {
             </div>
 
             <Link
-              href="mailto:hello@yjcode.kr"
+              href="mailto:yjcode96@gmail.com"
               className="mt-10 inline-flex items-center gap-2 border-b border-[#f5f2ea]/54 pb-2 text-sm font-semibold text-[#f5f2ea] transition hover:border-[#d8e6ff] hover:text-[#d8e6ff]"
             >
-              hello@yjcode.kr
+              yjcode96@gmail.com
               <ArrowUpRight size={16} aria-hidden />
             </Link>
           </div>
